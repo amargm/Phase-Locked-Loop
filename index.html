@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PLL</title>
+   
+</head>
+<body>
+  
+    <hr>
+    <h1  style="text-align: center;"> <a href="https://www.kletech.ac.in/">  KLE Technological University</a> </h1>
+    <h1  style="text-align: center;">School of Electronics and Communication</h1>
+    <h1 style="text-align: center;">Senior Design Project</h1>
+    <h2 style="text-align: center;">On</h2>
+    <h1  style="text-align: center;">Phase Locked Loop</h1>
+    <h2 style="text-align: center;">Team members : <a href="https://www.linkedin.com/in/vishal-kumar-906211200/">Vishal Kumar    ||</a>  <a href="#">Prassana    ||</a> <a href="https://www.linkedin.com/in/basavaraj-managur-25b65a20a/">Basavaraj Managur    ||</a> <a href="https://www.linkedin.com/in/amar-g-m/">Amar G M      </a></h2>
+<h2  style="text-align: center;">Guide : Dr.Sujata Kotabagi</h2> 
+    <hr>
+    <hr>
+   <h1  style="text-align: center;">ACKNOWLEDGMENT</h1>
+   <br>
+   <section>We,  as  a  team,  would  like  to  show  gratitude  towards  our  college  KLE 
+            TechnologicalUniversity for satanding out to their Motto i.e., “Creating value and
+            leveraging knowledge“and providing us with a bounty Opportunity to learn and provide
+            to society.  The firststep  towards  success  is  the  first  step,  our  college  has
+            surely  helped  us  in  many  suchsteps I’d like to thank Vice Chancellor Dr.Ashok Shettar 
+            and Registrar Dr.  N H Ayachitfor creating a healthy environment in the college,
+            which helped students focus on theirwork.Labs are the place where ideas come to reality. 
+            We are honoured to be a part of suchlabs which are NBA accredited. 
+            Working in these labs have a great impact on the learningprocess.  
+            Libraries are the ocean of knowledge and our college is blessed with one. 
+            As weknow that reading good books adds value to one’s knowledge, and value-based knowledge
+            is what helps us to achieve our goals as an engineer.  With due respect,  we would like to
+            especially thank our Head of department ‘Dr Nalini Iyer’ mam for always encouragingthe students
+            to come up with innovative ideas with whatever limited knowledge we have.Finally, we would 
+            like to thank all the team members for putting their time and energyinto making this project
+            a success.
+    </section>
+    <hr>
+   <h1  style="text-align: center;">ABSTRACT</h1> 
+    <section>As a team we decided to work on mixed signal IC design, considering this we decided todesign a PLL(Phase Locked Loop) because the design process would incorporate topicsfrom Analog, Digital, IC design, and control systems.</section>
+    <section>A Phase Locked Loop is a closed ”Loop” system with a feedback that com-pares the phase of the output signal with the phase of the input reference signal.  Thiscomparison is performed using a Phase detector or a Phase comparator.  As the feedbackis working it tries to ”Lock” the ”Phase” between the input and output signal.  The term”Lock” refers to a constant phase difference or zero phase difference.The output signalfrom  the  feedback(fed)  is  compared  with  the  input  reference  signal(fref)  until  they  arelocked.  If the phase is unmatched then it is said to be in unlocked state and the signal issent to each component in the loop to correct the phase difference.</section>
+    <section>These components consist of the Phase Frequency Detector (PFD), the chargepump (CP), Divider (divide by n counter) and the voltage controlled oscillator (VCO).Any phase differences in fref and fed are detected by PFD block and then an error signal isgenerated.  According to that error signal the CP either increases or decreases the amountof charge going to the capacitor.  Depending on  the amount of  charge the VCO eitherspeeds  up  or  slows  down.   The  loop  continues  in  this  process  until  the  locked  mode  isreached.  After the loop has achieved a locked state the loop still continues keeping theoutput of each components constant.  The output signal has same phase with respect tothe reference signal.  The design flow process includes the design, simulation of completeblock as well as individual blocks and data sheet of PVT (Process Voltage Temperature)analysis</section>
+    <hr>
+    <div>
+        <h1  style="text-align: center;">CONTENTS</h1>
+        <ol  style="text-align: center; list-style: none;" >
+          <a href="#chapter1"> <li> Introduction </li></a> 
+          <a href="#chapter2"> <li>System Design </li></a> 
+          <a href="#chapter3"> <li>Implementation details </li></a> 
+          <a href="#chapter4"> <li>Results and Discussions </li></a> 
+          <a href="#chapter5"> <li>Conclusion and future scope </li></a> 
+          <a href="#chapter6"> <li>References </li></a>  
+        </ol>
+
+    </div>
+    <hr>
+    <div id="chapter1">
+        <h1  style="text-align: center;">Chapter : 01</h1>
+        <h1  style="text-align: center;">INTRODUCTION</h1>
+        <hr>
+        <section>
+            The design that is best suitable for the application and that meets the specifications asclosely as feasible is explored in this chapter and further chapters to come.  As mentionedbelow, this part contains subtopics such as the Functional block diagram, Design options,and the Proposed architecture 
+        </section>
+        <h2 >1.1  Motivation</h2>
+        <section>Gone are the days when input from crystal oscillators were sufficient to be used as operating frequencies of the electronic devices. In this era of advancement, as the technology
+            is advancing, the electronic gadgets are operating in GHz(Giga Hertz) of frequencies.
+            Though crystal oscillators provide very stable frequencies they are not high enough to operate devices of toady’s generation. Thus, to generate higher frequencies and more or less
+            equally stable frequencies PLL’s (Phased Locked Loops) are used. The basic block level
+            function of the PLL is to generate a much higher frequencies provided lower frequency as
+            the input.It is widely used in computers,radio telecommunication where it is necessary to
+            stabilize a generated signal or to generate a frequency different from the original reference
+            signal.
+        </section>
+        <h2 >1.2 Objectives</h2>        <section>The predominant purpose of the designed PLL is to act as a frequency synthesizer. A
+            frequency which  is stable as well as much higher than the input reference frequency is
+            synthesized.
+        </section>
+        
+        <h2>1.3 Performance Parameters</h2>
+        <ul>
+            <li><b>UP and Down Signal : </b> Based on the phase difference between the feedback and
+                reference up and down signal is generated which helps in detecting the phase.
+            </li>
+            <li><b>Control Voltage (Vctrl) : </b>The amount of charge stored on the capacitor which acts
+                an input to the VCO, based on this voltage output frequency of VCO is decided.
+            </li>
+            <li><b>umber of stages N :</b> Number of inverters cascaded in series in VCO is the stage
+                of the VCO in this we have used N=5. Depending on the value of N, the frequency of
+                oscillations is decided i.e. Fos is inversely proportional to N .
+               <br> 
+                Fosc = (Id)/(V dd ∗ Ctot ∗ N)</li>
+        </ul>
+        <h2>1.4 Problem statement</h2>
+        <section>To design and simulate a Phase Locked Loop (PLL) which outputs a frequency of about
+            900MHz given an input reference frequency of 30MHz in UMC 180nm technology.</section>
+
+    </div>
+    <hr>
+    <div id="chapter2">
+        <h1  style="text-align: center;">Chapter : 02</h1>
+    <h1  style="text-align: center;">System Design</h1>
+    <hr>
+    <section>In this chapter, the overview of the design that is feasible has been discussed. In this
+        segment there are subtopics like Functional block diagram, Design Alternatives and their
+        proposed structure are explained.
+    </section>
+    <h2>2.1 Functional Block Diagram</h2>
+    <img  src="/images/block dia.png" alt="Block diagram of PLL" class="align" >
+    <section>As shown in the block diagram a stable reference frequency fref is provided as a
+        reference to the Phase frequency detector (PFD) which measures the difference in phase
+        between the reference and feedback (fed) signal,if a phase difference is found between the
+        two signals, it generates “up” or “down” synchronized signals to the charge pump. If
+        ”up” signal is generated as the error signal from the PFD then the charge pump pumps
+        charge onto the capacitor which increases the control voltage,(Vctrl). On the other hand,
+        if ”down” signal is generated as the error signal from the PFD then charge pump removes
+        the charge from the capacitor, which decreases Vctrl. The control voltage(Vctrl) is the
+        input to the VCO. Now, according to the error generated by the PFD the VCO either
+        speeds up or slows down the feedback signal.The output of the VCO is then feedback to
+        the Divider which divides the frequency that matches with the reference frequency. The
+        output of the divider is provided to PFD in order to recalculate the phase difference, thus
+        creating a closed loop control system.
+    </section>
+    <h2>2.2 Design Alternatives</h2>
+    <section>
+        The alternatives design of phase detector,Charge Pump and Voltage Controlled Oscillator
+        are given below
+    </section>
+    <h2>2.2.1 Phase Detector</h2>
+
+    <img src="/images/Types in PD.png" alt="Designs of PD" class="align">
+    <br>
+    <section>
+        A circuit that detects the phase between the signals is called a phase detector.A basic
+        circuitry that acts as a phase detector is XOR gate.It produces error pulses on both falling
+        and rising edges.The disadvantage is that it locks onto the harmonics of the reference signal
+        and can not detect the difference in frequency. 
+    </section>
+
+    <h2>2.2.2 Charge Pump</h2>
+    <img src="/images/alt design of CP.png" alt="alternate design of CP " class="align">
+
+    <br>
+
+    <section>Figure 2.3 shows a charge pump using a bootstrap buffer which helps in suppressing
+        charge sharing.This charge pump also improves the current mismatch.
+    </section>
+
+    <h2>2.2.3 Voltage Controlled Oscillator</h2>
+    <img src="/images/types in VCO.png " alt="different designs of VCO" class="align">
+
+    <br>
+    <section>There were two types of VCO architectures considered in this design. The first was
+        a single-ended ring oscillator, as shown in Figure 2.4. This design can only have an
+        odd number of inverters.Differential architecture was because it offeres better noise rejection.There is an inversion between the third and fourth stages due to an even number of
+        stages being used. The oscillation frequency equation of the differential ring oscillator is
+        the same as the single-ended configuration.
+    </section>
+    </div>
+
+    <div id="chapter3">
+        <hr>
+        <h1  style="text-align: center;">Chapter : 03</h1>
+     <h1  style="text-align: center;">Implementation details</h1>
+     <hr>
+     <h2>3.1 Specifications</h2>
+     <img src="/images/white box.png" alt="white box" class="align">
+     <br>
+     <h2>3.2 Final Design</h2>
+     <section>A PLL is a negative feedback control system circuit. As the name implies, the purpose of
+        a PLL is to generate a signal in which the phase is the same as the phase of a reference
+        signal. This is done after many iterations of comparing the reference and feedback signals.
+        The overall goal of the PLL is to match the reference and feedback signals in phase—
+        this is the lock mode. After this, the PLL continues to compare the two signals but since
+        they are in lock mode, the PLL output is constant. A basic form of a PLL consists of
+        four main blocks:
+    </section>
+    <ol>
+        <li>Phase Detector (PD)</li>
+        <li>Charge Pump (CP)</li>
+        <li>Voltage Controlled Oscillator (VCO) </li>
+        <li>Frequency Divider</li>
+    </ol>
+
+    <section>
+        The proposed designed of PLL shown in fig 3.2 is provided with an input frequency
+        of 30MHz which outputs a frequency of about 900MHz. A stable reference frequency of
+        30MHz is provided as a reference to the Phase frequency detector (PFD) which measures
+        the difference in phase between the reference and feedback signal. If a phase difference
+        is found between the two signals, it generates “up” or “down” synchronized signals to
+        the charge pump. If ”up” signal is generated as the error signal from the PFD then
+        the charge pump pumps charge onto the capacitor which increases the control voltage,
+        Vctrl. On the other hand, if ”down” signal is generated as the error signal from the PFD
+        then charge pump removes the charge from the capacitor, which decreases Vctrl. The
+        control voltage(Vctrl) is the input to the VCO. Now, according to the error generated
+        by the PFD the VCO either speeds up or slows down the feedback signal.If up signal
+        is generated then VCO speeds up the feedback signal and if down signal is generated,
+        the VCO slows down.The output of the VCO is then feedback to the Didvider which
+        divides the frequency that matches with the reference frequency and then the output of
+        the divider is provided to PFD in order to recalculate the phase difference, thus creating
+        a closed loop frequency control system. 
+    </section>
+   <img src="/images/PLL_schematic.png" alt="Proposed Design" class="align">
+   
+   <h2>3.3 Phase Detector</h2>
+   <section>
+    The PFD is designed using two D-flip flops with reset feature as shown in Figure 3.3.
+    The inputs to the two clocks of the D -flip flops are the reference(fref) and feedback(fed)
+    signals. Both the inputs to D are connected to VDD always keeping them high. The
+    outputs are either “up” or “down” pulses. The output of D- flip flop are connected to
+    an AND gate(NAND gate followed by an inverter) to the reset of the D-FF’s.The logic
+    behind this is when both up and down are high, the output through the AND gate is
+    high, which resets the D-FF’s thus, maintaining that both signals cannot be high at the
+    same time. This indicated that the output of the PFD is either an up or down pulse but,
+    not both.     
+   </section>
+   <img src="/images/PD_schematic.png" alt="PD Schematic">
+   <section>
+    The PFD circuit above in Figure 3.3 can be analyzed in two different ways—one way
+    in which fed leads fref and the other in which fed lags fref. The term “lead” in this case
+    means that the feedback signal is faster or in the lead of the reference signal and the term
+    “lag” in this case means that the feedback signal is slower or in lag of the reference signal.    
+   </section> 
+   <img src="/images/pd_op3.jpeg " alt="Down signal">
+   <br>
+   <section>
+    The first scenario mentioned above as shown in Figure 3.4, when the feedback signal
+lags the reference signal an ”up” pulse is generated which represents the difference between
+the phases of the two clock signals.This up pulse indicates the circuit that the feedback
+signal needs to speed up or “catch up” with the reference signal.
+   
+   </section> 
+ <img src="/images/pd_op.jpeg">
+ <section>
+    The second scenario mentioned above as shown in Figure 3.5, when the feedback signal
+leads the reference signal a ”down” pulse is generated which represents the difference
+between the phases of the two clock signals.This down pulse indicates the circuit that the
+feedback signal needs to slow down as compared to the reference signal.Ideally, the two
+signals should be at the same speed or phase. 
+ </section>
+
+
+ <h2>3.4 Charge Pump </h2>
+ <section>
+    Figure 3.6 shows the simplest CP circuit. The main function of a charge pump is to
+    take the digital ”up” and ”down” pulses from the PFD and convert them into an analog
+    control voltage (Vctrl). It consists of two switched current sources that pump charge into
+    the capacitor or out of the capacitor according to the PFD output. When the feedback
+    lags the reference signal an up signal is generated from the PFD. This up signal from the
+    PFD will turn the up switch on, which causes the CP to inject current into the capacitor
+    which in turn increases the Vctrl by charging the capacitor
+ </section>
+
+ <section>
+    When the feedback leads the reference signal, a down signal is generated
+    from the PFD. This down signal from the PFD will turn the up switch OFF and down
+    switch ON, which causes the CP to sink the current out of the capacitor which in turn
+    decreases the Vctrl by discharging the capacitor. To avoid any current mismatch the
+    current through up switch and the current through down switch must be equal.
+       
+ </section>
+ <img src="/images/ChargeP_schematic.png" alt="CP Schematic">
+ <br>
+ <img src="/images/CPblock_OUT.png" alt="CP Output">
+ <br>
+ <section>
+    Above Figure 3.7 shows the Charge Pump implementation using Cadence Virtuoso
+    180nm technology. From the simulation we can understand that as the up pulse is high
+    the capacitor charges and when both up and down pulses are high the cap holds the
+    charge onto it and when down pulse is high the cap discharges and when both the pulses
+    are low the cap hold the charge.    
+ </section>
+<h2>3.5 Voltage Controlled Oscillator</h2>
+<section>
+    Figure 3.8 shows the Schematic of Five Stage Current Starved CMOS Voltage Controlled
+Oscillator .Current starved five stage VCO is simple ring oscillator consisting of five
+cascaded inverters. The proposed circuit is implemented in a 180nm CMOS technology.
+Current Starved VCO is a type of VCO based on ring Oscillator with extra CMOS acting
+as current source for the inverters. The control voltage (Vctrl) is the input to the VCO
+which is within the tuning range and based on the Vctrl an output frequency is generated
+by the VCO.
+
+</section>
+<section>
+    The oscillation frequency of the current starved VCO for N (an odd number ¿= 5) of
+stages is
+<br>
+Fosc =(Id)/(V dd ∗ Ctot ∗ N)
+</section>
+<img src="/images/VCO_Schematic.png" alt="VCO Schematic">
+<section>
+    Figure 3.9 shows the plot of output frequency Vs the Controlled voltage. The Vctrl
+in locked state reaches till 0.648v, in accordance to it the output frequency of the VCO
+is 908MHz(Apprx. 900MHz) which is the desired output frequency of the PLL.
+
+</section>
+<img src="/images/VCO_freq.jpeg" alt="Fout Frequency Vs Control Voltage">
+
+<h2>3.6 Frequency Divider</h2>
+<section>
+    Figure 3.10 shows a Frequency divider which divides the output frequency of the VCO by
+32. It consists of 5 D-flip flops cascaded in series to provide a division by 32 i.e. based on
+equation (2 pow n), where n is the number of flip flops used. The output frequency of the
+VCO is in the range of 900MHz which when passed through frequency divider produces a
+frquency of 28.125MHZ i.e. 900/32 (appox 30MHz)which is similar to the input reference
+frequency. The output of the divider is fed back to the PFD and now it becomes easier
+for PFD to compare the phase difference between fref and fed and produce up or down
+signal.
+</section>
+
+<img src="/images/DIV_32_schematic.png" alt="Divider">
+</div>
+
+<hr>
+<div id="chapter4">
+    <h1  style="text-align: center;">Chapter : 04</h1>
+  
+<h1  style="text-align: center;">Results and Discussions</h1>
+<hr>
+<h2>
+    4.1 Result Analysis
+</h2>
+
+<section>The figure 4.1 shows the output of the PLL which represents that feedback signal (Red
+    in colour) is lagging behind the reference signal (Green in colour) and thus ”up” signal is
+    generated.
+</section>
+<img src="/images/LAG_sim.jpeg" alt="LAG">
+<h2>4.2 Unlocked State</h2>
+<section>The figure 4.2 shows the output of the PLL which represents that feedback signal (Red
+    in colour) is leading the reference signal (Green in colour) and thus ”down” signal is
+    generated.
+    </section>
+    <img src="/images/LEAD_sim.png" alt="Lead">
+    <img src="/images/lead.jpeg" alt="Unlocked state">
+    <br>
+    <section>he figure 4.3 represents the unlocked state of the PLL where the feedback and reference signals are not in phase and loop is not locked. Here clearly we can see that the
+        feedback signal is leading the reference signal thus the down signal is generated indicating
+        the feedback signal to slow down
+    </section>
+<h2>4.3 Locked State</h2>
+<section>Figure 4.4 represents the locked state of the PLL, from the figure the yellow elliptical
+    shape shows that the Vctrl saturates after around 300us and remains constant after that
+    which represents the locked state of the PLL.
+</section>
+<br>
+<img src="/images/PLL_sim_edit (1).jpg" alt="Locked state">
+<img src="/images/locked_state_pll.jpeg" alt="locked state">
+<section>Figure 4.5 and 4.6 are the zoomed version of the figure 4.4 where Loop is locked . The
+    spikes in up and down signals represents that the loop is locked and there is no phase
+    difference between feedback and reference signal.Figure 4.6 clearly shows the overlapping
+    of fref and fed with zero phase difference.
+</section>
+<img src="/images/LOCKED_sim.jpeg" alt="locked state">
+<img src="/images/pll_out.jpeg" alt="Pll out">
+<section>Figure 4.7 shows the final output of the PLL where Vctrl is constant at 0.648v and a
+    frequency of 908MHz (approx.900MHz) is produced.
+    </section>
+
+</div>
+<div id="chapter5">
+    <hr>
+    <h1  style="text-align: center;">Chapter : 05</h1>
+    <h1  style="text-align: center;">Conclusion and future scope</h1>
+    <hr>
+    <h2>5.1 Conclusion</h2>
+    <section>Getting an opportunity to work on such a topic was mesmerizing.PLL (Phase Locked
+        Loop) being a very challenging topic gave our team a lot of learning that made us understand foundation of PLL. The output simulations are such that it meets all the requirement
+        of the problem statement. An output frequency of 900MHz is generated from an input
+        reference of 30MHz at nominal corners and temperatures.
+    </section>
+    <h2>5.2 Future scope</h2>
+    <section>
+        Coping with sky-touching complexity in structure and production, power management
+        would play a major and crucial role, thus, in future the power consumed by this designed
+        could be further improved.
+    </section>
+    <h2>5.3 Application in the Societal Context</h2>
+    <section>PLL is sometimes a cheaper alternative to engineering solutions, along with frequency the
+            cost increases too. So it is cheaper to use lower frequency quartz and then a multiplier
+            in the PLL to increase the quartz frequency to avoid high costs. //The affect on the
+            environment by the PLL in minimal as PLL can serve as an alternative to high frequency
+            quartz. Quartz are natural resources so by usnig PLL we can avoid usage of natural
+            resources.
+    </section>
+</div>
+</body>
+</html>
