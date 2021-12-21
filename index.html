@@ -130,7 +130,7 @@
     </section>
     <h2>2.2.1 Phase Detector</h2>
 
-    <img src="/images/Types in PD.png" alt="Designs of PD" class="align">
+    <img src="https://amargm.github.io/Phase-Locked-Loop/images/Types%20in%20PD.png" alt="Designs of PD" class="align">
     <br>
     <section>
         A circuit that detects the phase between the signals is called a phase detector.A basic
@@ -140,7 +140,7 @@
     </section>
 
     <h2>2.2.2 Charge Pump</h2>
-    <img src="/images/alt design of CP.png" alt="alternate design of CP " class="align">
+    <img src="https://amargm.github.io/Phase-Locked-Loop/images/alt%20design%20of%20CP.png" alt="alternate design of CP " class="align">
 
     <br>
 
@@ -149,7 +149,7 @@
     </section>
 
     <h2>2.2.3 Voltage Controlled Oscillator</h2>
-    <img src="/images/types in VCO.png " alt="different designs of VCO" class="align">
+    <img src="https://amargm.github.io/Phase-Locked-Loop/images/types%20in%20VCO.png " alt="different designs of VCO" class="align">
 
     <br>
     <section>There were two types of VCO architectures considered in this design. The first was
@@ -166,7 +166,7 @@
      <h1  style="text-align: center;">Implementation details</h1>
      <hr>
      <h2>3.1 Specifications</h2>
-     <img src="/images/white box.png" alt="white box" class="align">
+     <img src="https://amargm.github.io/Phase-Locked-Loop/images/white%20box.png" alt="white box" class="align">
      <br>
      <h2>3.2 Final Design</h2>
      <section>A PLL is a negative feedback control system circuit. As the name implies, the purpose of
@@ -202,7 +202,7 @@
         the divider is provided to PFD in order to recalculate the phase difference, thus creating
         a closed loop frequency control system. 
     </section>
-   <img src="/images/PLL_schematic.png" alt="Proposed Design" class="align">
+   <img src="https://amargm.github.io/Phase-Locked-Loop/images/PLL_schematic.png" alt="Proposed Design" class="align">
    
    <h2>3.3 Phase Detector</h2>
    <section>
@@ -216,14 +216,14 @@
     same time. This indicated that the output of the PFD is either an up or down pulse but,
     not both.     
    </section>
-   <img src="/images/PD_schematic.png" alt="PD Schematic">
+   <img src="https://amargm.github.io/Phase-Locked-Loop/images/PLL_schematic.png" alt="PD Schematic">
    <section>
     The PFD circuit above in Figure 3.3 can be analyzed in two different ways—one way
     in which fed leads fref and the other in which fed lags fref. The term “lead” in this case
     means that the feedback signal is faster or in the lead of the reference signal and the term
     “lag” in this case means that the feedback signal is slower or in lag of the reference signal.    
    </section> 
-   <img src="/images/pd_op3.jpeg " alt="Down signal">
+   <img src="https://amargm.github.io/Phase-Locked-Loop/images/pd_op3.jpeg " alt="Down signal">
    <br>
    <section>
     The first scenario mentioned above as shown in Figure 3.4, when the feedback signal
@@ -232,7 +232,7 @@ the phases of the two clock signals.This up pulse indicates the circuit that the
 signal needs to speed up or “catch up” with the reference signal.
    
    </section> 
- <img src="/images/pd_op.jpeg">
+ <img src="https://amargm.github.io/Phase-Locked-Loop/images/pd_op.jpeg">
  <section>
     The second scenario mentioned above as shown in Figure 3.5, when the feedback signal
 leads the reference signal a ”down” pulse is generated which represents the difference
@@ -261,9 +261,9 @@ signals should be at the same speed or phase.
     current through up switch and the current through down switch must be equal.
        
  </section>
- <img src="/images/ChargeP_schematic.png" alt="CP Schematic">
+ <img src="https://amargm.github.io/Phase-Locked-Loop/images/ChargeP_schematic.png" alt="CP Schematic">
  <br>
- <img src="/images/CPblock_OUT.png" alt="CP Output">
+ <img src="https://amargm.github.io/Phase-Locked-Loop/images/CPblock_OUT.png" alt="CP Output">
  <br>
  <section>
     Above Figure 3.7 shows the Charge Pump implementation using Cadence Virtuoso
@@ -289,14 +289,14 @@ stages is
 <br>
 Fosc =(Id)/(V dd ∗ Ctot ∗ N)
 </section>
-<img src="/images/VCO_Schematic.png" alt="VCO Schematic">
+<img src="https://amargm.github.io/Phase-Locked-Loop/images/VCO_Schematic.png" alt="VCO Schematic">
 <section>
     Figure 3.9 shows the plot of output frequency Vs the Controlled voltage. The Vctrl
 in locked state reaches till 0.648v, in accordance to it the output frequency of the VCO
 is 908MHz(Apprx. 900MHz) which is the desired output frequency of the PLL.
 
 </section>
-<img src="/images/VCO_freq.jpeg" alt="Fout Frequency Vs Control Voltage">
+<img src="https://amargm.github.io/Phase-Locked-Loop/images/VCO_freq.jpeg" alt="Fout Frequency Vs Control Voltage">
 
 <h2>3.6 Frequency Divider</h2>
 <section>
@@ -310,7 +310,7 @@ for PFD to compare the phase difference between fref and fed and produce up or d
 signal.
 </section>
 
-<img src="/images/DIV_32_schematic.png" alt="Divider">
+<img src="https://amargm.github.io/Phase-Locked-Loop/images/DIV_32_schematic.png" alt="Divider">
 </div>
 
 <hr>
@@ -327,14 +327,14 @@ signal.
     in colour) is lagging behind the reference signal (Green in colour) and thus ”up” signal is
     generated.
 </section>
-<img src="/images/LAG_sim.jpeg" alt="LAG">
+<img src="https://amargm.github.io/Phase-Locked-Loop/images/LAG_sim.jpeg" alt="LAG">
 <h2>4.2 Unlocked State</h2>
 <section>The figure 4.2 shows the output of the PLL which represents that feedback signal (Red
     in colour) is leading the reference signal (Green in colour) and thus ”down” signal is
     generated.
     </section>
-    <img src="/images/LEAD_sim.png" alt="Lead">
-    <img src="/images/lead.jpeg" alt="Unlocked state">
+    <img src="https://amargm.github.io/Phase-Locked-Loop/images/LEAD_sim.png" alt="Lead">
+    <img src="https://amargm.github.io/Phase-Locked-Loop/images/lead.jpeg" alt="Unlocked state">
     <br>
     <section>he figure 4.3 represents the unlocked state of the PLL where the feedback and reference signals are not in phase and loop is not locked. Here clearly we can see that the
         feedback signal is leading the reference signal thus the down signal is generated indicating
@@ -346,15 +346,15 @@ signal.
     which represents the locked state of the PLL.
 </section>
 <br>
-<img src="/images/PLL_sim_edit (1).jpg" alt="Locked state">
-<img src="/images/locked_state_pll.jpeg" alt="locked state">
+<img src="https://amargm.github.io/Phase-Locked-Loop/images/PLL_sim_edit%20(1).jpg" alt="Locked state">
+<img src="https://amargm.github.io/Phase-Locked-Loop/images/locked_state_pll.jpeg" alt="locked state">
 <section>Figure 4.5 and 4.6 are the zoomed version of the figure 4.4 where Loop is locked . The
     spikes in up and down signals represents that the loop is locked and there is no phase
     difference between feedback and reference signal.Figure 4.6 clearly shows the overlapping
     of fref and fed with zero phase difference.
 </section>
-<img src="/images/LOCKED_sim.jpeg" alt="locked state">
-<img src="/images/pll_out.jpeg" alt="Pll out">
+<img src="https://amargm.github.io/Phase-Locked-Loop/images/LOCKED_sim.jpeg" alt="locked state">
+<img src="https://amargm.github.io/Phase-Locked-Loop/images/pll_out.jpeg" alt="Pll out">
 <section>Figure 4.7 shows the final output of the PLL where Vctrl is constant at 0.648v and a
     frequency of 908MHz (approx.900MHz) is produced.
     </section>
